@@ -1,5 +1,3 @@
-
-
 # Defines ACL allowing what traffic enters and leaves the VPC
 resource "aws_security_group" "sg" {
   #Security group has a name attribute, doesn't need to be tagged
@@ -12,8 +10,8 @@ resource "aws_security_group" "sg" {
     from_port = "22"
     to_port   = "22"
     protocol  = "tcp"
-    # Calls senstive variable allowing only my personal ip address to enter the vpc 
-    cidr_blocks = ["${data.aws_secretsmanager_secret_version.public_ip.secret_string}/32"]
+    # Sets the only ip address that can access the ec2 instance inside the VPC is the private ip address stored in the AWS SSM
+    cidr_blocks = ["${data.aws_ssm_parameter.my_public_ip.value}/32"]
   }
 
   # Allows all traffic to leave the VPC and access the internet
