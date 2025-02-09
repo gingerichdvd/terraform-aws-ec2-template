@@ -1,3 +1,4 @@
+# Defines AWS as provider where given resources will be created
 terraform {
   required_providers {
     aws = {
@@ -7,7 +8,7 @@ terraform {
   }
 }
 
-# Configure the AWS Provider
+# Configure the AWS Provider region
 provider "aws" {
   region = "us-west-2"
 }
