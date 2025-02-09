@@ -1,3 +1,4 @@
+# Access the AWS SSM to get stored ip address
 resource "aws_iam_policy" "my_secret_policy" {
   name        = "my_secret_policy"
   description = "Allow access to Secrets Manager for my_public_ip"
