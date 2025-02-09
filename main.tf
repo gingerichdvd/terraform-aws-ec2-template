@@ -42,6 +42,28 @@ resource "aws_route" "default_route" {
 }
 
 resource "aws_route_table_association" "mtc_route_assoc" {
-  subnet_id       = aws_subnet.mtc_public_subnet.id
+  subnet_id      = aws_subnet.mtc_public_subnet.id
   route_table_id = aws_route_table.mtc_public_rt.id
+}
+
+resource "aws_security_group" "mtc_sg" {
+  #Security group has a name attribute, doesn't need to be tagged
+  name        = "dev-sg"
+  description = "dev security group"
+  vpc_id      = aws_vpc.mtc_vpc.id
+
+  ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    # Calls senstive variable allowing only my personal ip address to enter the vpc 
+    cidr_blocks = [var.private_ip]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
