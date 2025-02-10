@@ -5,10 +5,10 @@ resource "aws_security_group" "sg" {
   description = "default security group"
   vpc_id      = var.vpc_id
 
-  # Allows only SSH traffic from private ip address
+  # Allows only tcp traffic from personal ip address
   ingress {
-    from_port = "22"
-    to_port   = "22"
+    from_port = 0
+    to_port   = 0
     protocol  = "tcp"
     # Sets the only ip address that can access the ec2 instance inside the VPC is the private ip address stored in the AWS SSM
     cidr_blocks = ["${data.aws_ssm_parameter.my_public_ip.value}/32"]

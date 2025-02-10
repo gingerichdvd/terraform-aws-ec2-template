@@ -20,6 +20,6 @@ resource "aws_instance" "app_server" {
 
 # Link SSH key pair to connect to instances with SSH
 resource "aws_key_pair" "ec2_auth" {
-  key_name   = "ec2key"
-  public_key = file("~/.ssh/ec2key.pub")
+  key_name   = "id_rsa"
+  public_key = file("~/.ssh/id_rsa.pub")
 }
