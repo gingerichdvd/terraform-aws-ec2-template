@@ -3,6 +3,7 @@ resource "aws_instance" "app_server" {
   # AMI for Ubuntu linux server
   ami                    = "ami-00c257e12d6828491"
   instance_type          = "t2.micro"
+  # Sets resource values to other module resource's ids
   vpc_security_group_ids = [var.security_group_id]
   subnet_id              = var.public_subnet_id
 

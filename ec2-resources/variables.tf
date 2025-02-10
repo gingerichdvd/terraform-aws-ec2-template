@@ -1,4 +1,4 @@
-# Variables are given values through main.tf file in parent directory
+# Set variables from other modules to string type
 variable "vpc_id" {
   type = string
 }

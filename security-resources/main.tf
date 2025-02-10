@@ -1,6 +1,6 @@
 # Defines ACL allowing what traffic enters and leaves the VPC
 resource "aws_security_group" "sg" {
-  #Security group has a name attribute, doesn't need to be tagged
+  # Name can't be set to default, default is reserved
   name        = "default_sg"
   description = "default security group"
   vpc_id      = var.vpc_id
