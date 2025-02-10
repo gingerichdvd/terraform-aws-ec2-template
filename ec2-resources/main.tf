@@ -1,17 +1,17 @@
 # Defines EC2 instance that will be run inside the VPC
 resource "aws_instance" "app_server" {
-  # AMI for Red Hat linux server
-  ami                    = "ami-0da4b082c0455e0a0"
+  # AMI for Ubuntu linux server
+  ami                    = "ami-00c257e12d6828491"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [var.security_group_id]
   subnet_id              = var.public_subnet_id
 
-  tags = {
-    Name = "ec2-server"
-  }
-
   root_block_device {
     volume_size = 10
+  }
+
+  tags = {
+    Name = "ec2-server"
   }
 }
 
