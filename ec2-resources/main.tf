@@ -6,6 +6,9 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids = [var.security_group_id]
   subnet_id              = var.public_subnet_id
 
+  # Get bash script to install docker onto the ec2 instance
+  user_data = file("userdata.tpl")
+
   root_block_device {
     volume_size = 10
   }
