@@ -6,6 +6,9 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids = [var.security_group_id]
   subnet_id              = var.public_subnet_id
 
+  # Ensure this line is here, needed to connect to ec2 instance with ssh
+  key_name               = aws_key_pair.ec2_auth.key_name
+
   # Get bash script to install docker onto the ec2 instance
   user_data = file("userdata.tpl")
 
@@ -20,6 +23,6 @@ resource "aws_instance" "app_server" {
 
 # Link SSH key pair to connect to instances with SSH
 resource "aws_key_pair" "ec2_auth" {
-  key_name   = "id_rsa"
-  public_key = file("~/.ssh/id_rsa.pub")
+  key_name   = "ec2_key"
+  public_key = file("~/.ssh/ec2_key.pub")
 }
