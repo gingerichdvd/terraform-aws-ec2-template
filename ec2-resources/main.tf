@@ -10,7 +10,7 @@ resource "aws_instance" "app_server" {
   key_name               = aws_key_pair.ec2_auth.key_name
 
   # Get bash script to install docker onto the ec2 instance
-  user_data = file("userdata.tpl")
+  user_data = file("userdata.sh")
 
   root_block_device {
     volume_size = 10
